@@ -10,3 +10,4 @@ The default permission ace for this command is `toggle-npc` - you can give this 
 `add_ace group.admin toggle-npc allow`
 
 If you want to edit the permissions check such as for jobs or your framework, edit the `config.lua`
+You can also edit the notification function to integrate your server's notification script - by default it just uses chat messages.
