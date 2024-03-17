@@ -1,6 +1,7 @@
 <img src="https://github.com/Gravxd/fivem-enginesound-menu/assets/75702884/95a09e7e-d8aa-4955-ae0a-ae1ce6a639d4" width="100" height="100"><br>
 # chroma-toggleableNPC - FiveM
 Simple & straight forward toggleable NPC script with commands for your server administrators to turn on/off at will
+Gets rid of useless loops on the client and disables / enables AI with a simple one-time function.
 
 ## Dependencies
 None - Standalone
