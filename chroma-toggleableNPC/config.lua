@@ -9,13 +9,11 @@ Config = {
     end,
 }
 
-Config.Notification = 'auto_detect' --[ 'auto_detect' / 'other' ]   If you select 'auto_detect', only ESX, QBCore, cd_notifications, okokNotify, ps-ui and ox_lib notifications will be detected. Use 'other' for custom notification resources.
+Config.Notification = 'auto_detect' --[ 'auto_detect' / 'other' ]   If you select 'auto_detect', only ESX, QBCore, okokNotify, ps-ui and ox_lib notifications will be detected. Use 'other' for custom notification resources.
 -- Auto Detect
 
 if Config.Notification == 'auto_detect' then
-    if GetResourceState('cd_notifications') == 'started' then
-        Config.Notification = 'cd_notifications'
-    elseif GetResourceState('okokNotify') == 'started' then
+    if GetResourceState('okokNotify') == 'started' then
         Config.Notification = 'okokNotify'
     elseif GetResourceState('ps-ui') == 'started' then
         Config.Notification = 'ps-ui'
