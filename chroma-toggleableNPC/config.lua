@@ -20,9 +20,6 @@ if Config.Notification == 'auto_detect' then
     elseif GetResourceState('ox_lib') == 'started' then
         Config.Notification = 'ox_lib'
     else
-        if Config.Framework == 'esx' or Config.Framework == 'qbcore' then
-            Config.Notification = Config.Framework
-        else
             Config.Notification = 'chat'
         end
     end
