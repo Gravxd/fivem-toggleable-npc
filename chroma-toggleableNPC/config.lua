@@ -17,7 +17,6 @@ if Config.Notification == 'auto_detect' then
         Config.Notification = 'okokNotify'
     elseif GetResourceState('mythic_notify') == 'started' then
         Config.Notification = 'mythic_notify'
-
     else
         Config.Notification = 'chat'
     end
