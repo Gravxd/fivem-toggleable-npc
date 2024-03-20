@@ -6,32 +6,24 @@ Config = {
     Notification = Config.Notification, -- Change this to the desired notification method
 }
 
--- Auto Detect for Notification
-if Config.Notification == 'auto_detect' then
-    if GetResourceState('okokNotify') == 'started' then
-        Config.Notification = 'okokNotify'
-    elseif GetResourceState('mythic_notify') == 'started' then
-        Config.Notification = 'mythic_notify'
-    else
-        Config.Notification = 'chat'
-    end
-end
-
-
+local Enabled = Config.EnabledOnStartup
 
 local function Notify(src, msg, type)
     if Config.Notification == 'okokNotify' then
-        TriggerClientEvent('okokNotify:Alert', src, 'SYSTEM', msg, 5000, 'success', true) -- Assuming playSound is set to true
+        TriggerClientEvent('okokNotify:Alert', src, 'SYSTEM', msg, 5000, type or 'success', true) -- Assuming playSound is set to true
     elseif Config.Notification == 'mythic_notify' then
-        TriggerClientEvent('mythic_notify:client:SendAlert', src, { type = 'success', text = msg , style = { ['background-color'] = '#ffffff', ['color'] = '#000000' } }) -- Change #color to what ever you want https://imagecolorpicker.com/color-code
+        local style = {}
+        if type == 'error' then
+            style = { ['background-color'] = '#FF0000', ['color'] = '#FFFFFF' } -- Red background for error
+        else
+            style = { ['background-color'] = '#00FF00', ['color'] = '#000000' } -- Green background for success
+        end
+        TriggerClientEvent('mythic_notify:client:SendAlert', src, { type = type or 'success', text = msg , style = style })
     else
         -- Default to chat message if notification method is not recognized
         TriggerClientEvent("chatMessage", src, "SYSTEM", {255, 0, 0}, msg)
     end
 end
-
-
-local Enabled = Config.EnabledOnStartup
 
 RegisterCommand("togglenpc", function(source, args, rawCommand)
     if source == 0 then
@@ -53,4 +45,3 @@ CreateThread(function()
     SetRoutingBucketPopulationEnabled(0, Enabled)
     print(string.format("^6[chroma-toggleableNPC] ^7NPCs have been: %s", Enabled and "^2enabled.^7" or "^1disabled.^7"))
 end)
-
